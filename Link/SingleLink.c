@@ -12,6 +12,7 @@ node * create_link();
 int find_node(node * p, int val);
 node * add_new_node(node * p, int val);
 node * delete_node(node * p, int val);
+void release_link(node * p);
 
 int main(){
     node * single_link;
@@ -33,6 +34,8 @@ int main(){
     }else{
         printf("Can't Find This Value In This Single Link\n");
     }
+    release_link(single_link);
+    printf("Release link");
     return 0;
 }
 
@@ -105,4 +108,15 @@ node * delete_node(node * p, int val){
         }
     }
     return p;
+}
+
+void release_link(node * p){
+    node * poi = p;
+    while(poi != NULL){
+        node * tmp;
+        tmp = poi->next;
+        free(poi);
+        poi = tmp;
+    }
+    p = NULL;
 }
